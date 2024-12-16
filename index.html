@@ -5,27 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EngageSense: Real-Time Audio Engagement</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/wavesurfer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <script src="scripts.js" defer></script>
+    <script src="https://unpkg.com/meyda/dist/meyda.min.js"></script>
 </head>
 <body>
     <header>
         <h1>EngageSense: Real-Time Audio Engagement</h1>
     </header>
-    <main>
-        <button id="recordBtn">Record Audio</button>
-        <button id="stopBtn" disabled>Stop Recording</button>
-        <button id="downloadBtn">Download Report</button>
+
+    <!-- Control Buttons -->
+    <section>
+        <button id="recordBtn" class="btn">Start Recording</button>
+        <button id="stopBtn" class="btn" disabled>Stop</button>
+        <button id="uploadBtn" class="btn">Upload Audio</button>
+        <input type="file" id="audioInput" accept="audio/*" style="display: none;">
+        <button id="downloadBtn" class="btn">Download Report</button>
+        <button id="settingsBtn" class="btn">Settings</button>
+    </section>
+
+    <!-- Waveform Visualization -->
+    <section>
         <div id="waveform"></div>
-        <div>
-            <p>Loudness (RMS): <span id="rms">N/A</span></p>
-            <p>Spectral Centroid: <span id="centroid">N/A</span></p>
-            <p>Pitch: <span id="pitch">N/A</span></p>
-            <p>Sentiment: <span id="sentiment">N/A</span></p>
-            <p>Engagement: <span id="engagement">N/A</span></p>
+    </section>
+
+    <!-- Analysis Results -->
+    <section id="results">
+        <h2>Analysis Results</h2>
+        <p>Loudness (RMS): <span id="rms">N/A</span></p>
+        <p>Spectral Centroid: <span id="centroid">N/A</span></p>
+        <p>Pitch: <span id="pitch">N/A</span></p>
+        <p>Sentiment: <span id="sentiment">N/A</span></p>
+        <p>Engagement: <span id="engagement">N/A</span></p>
+    </section>
+
+    <!-- Chart -->
+    <section>
+        <canvas id="sentimentChart" width="600" height="300"></canvas>
+    </section>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h2>Settings</h2>
+            <label>
+                Engagement Threshold:
+                <input type="number" id="thresholdInput" min="0" max="1" step="0.1" value="0.5">
+            </label>
+            <button id="saveSettings">Save</button>
+            <button id="closeSettings">Close</button>
         </div>
-        <canvas id="sentimentChart" width="400" height="200"></canvas>
-    </main>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="scripts.js"></script>
 </body>
 </html>

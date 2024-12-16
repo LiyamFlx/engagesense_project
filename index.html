@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngageSense: Real-Time Audio Engagement</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>EngageSense: Real-Time Audio Engagement</h1>
+    </header>
+    <main>
+        <button id="recordBtn">Record Audio</button>
+        <button id="stopBtn" disabled>Stop Recording</button>
+        <button id="downloadBtn">Download Report</button>
+        <div id="waveform"></div>
+        <div>
+            <p>Loudness (RMS): <span id="rms">N/A</span></p>
+            <p>Spectral Centroid: <span id="centroid">N/A</span></p>
+            <p>Pitch: <span id="pitch">N/A</span></p>
+            <p>Sentiment: <span id="sentiment">N/A</span></p>
+            <p>Engagement: <span id="engagement">N/A</span></p>
+        </div>
+        <canvas id="sentimentChart" width="400" height="200"></canvas>
+    </main>
+</body>
+</html>
